@@ -1,0 +1,47 @@
+# Tomcat����  
+server:  
+    port: 8080
+ 
+spring:   
+    jackson:
+        date-format: yyyy-MM-dd HH:mm:ss
+        time-zone: GMT+8
+    http:
+      encoding:  
+        charset: UTF-8  
+        enabled: true  
+        force: true  
+druid:
+  type: com.alibaba.druid.pool.DruidDataSource
+  driverClassName: com.mysql.jdbc.Driver
+  url: jdbc:mysql://localhost:3306/panekey?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
+  username: root
+  password: 123456
+  # ��ʼ����С����С�����
+  initialSize: 1
+  minIdle: 3
+  maxActive: 20
+  # ���û�ȡ���ӵȴ���ʱ��ʱ��
+  maxWait: 60000
+  # ���ü����òŽ���һ�μ�⣬�����Ҫ�رյĿ������ӣ���λ�Ǻ���
+  timeBetweenEvictionRunsMillis: 60000
+  # ����һ�������ڳ�����С�����ʱ�䣬��λ�Ǻ���
+  minEvictableIdleTimeMillis: 30000
+  validationQuery: select 'x'
+  testWhileIdle: true
+  testOnBorrow: false
+  testOnReturn: false
+  # ��PSCache������ָ��ÿ��������PSCache�Ĵ�С
+  poolPreparedStatements: true
+  maxPoolPreparedStatementPerConnectionSize: 20
+  # ���ü��ͳ�����ص�filters��ȥ�����ؽ���sql�޷�ͳ�ƣ�'wall'���ڷ���ǽ
+  filters: stat,wall,slf4j
+  # ͨ��connectProperties��������mergeSql���ܣ���SQL��¼
+  connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+  # �ϲ����DruidDataSource�ļ������
+  #useGlobalDataSourceStat: true
+ 
+# ��MyBatis����
+mybatis:
+  mapperLocations: classpath:mybatis/mapping/*.xml 
+  typeAliasesPackage: com.panekey.sBMDemo.pojo
